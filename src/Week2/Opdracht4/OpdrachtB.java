@@ -1,8 +1,8 @@
-import TI.BoeBot;
-import TI.PWM;
+package Week2.Opdracht4;
+
 import TI.Servo;
 
-public class RobotMain {
+public class OpdrachtB {
     public static void main(String[] args)
     {
         //Servo's declareren
