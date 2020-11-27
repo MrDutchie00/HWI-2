@@ -1,12 +1,9 @@
+package Week2.Opdracht6;
+
 import TI.BoeBot;
-import TI.PWM;
 import TI.Servo;
 
-import java.awt.*;
-import java.util.BitSet;
-
-public class RobotMain {
-
+public class OpdrachtC {
     public static int basisSnelheid = 1500;
     public static int snelheids1 = 1500;
     public static int snelheids2 = 1500;
@@ -16,9 +13,30 @@ public class RobotMain {
 
     public static void main(String[] args)
     {
+        while (true) {
 
-            draaiGraden(50, 40);
-
+            gaNaarSnelheid(100);
+            BoeBot.wait(50);
+            noodrem();
+            BoeBot.wait(100);
+            draaien(40);
+            BoeBot.wait(1266);
+            reset();
+            gaNaarSnelheid(100);
+            BoeBot.wait(50);
+            noodrem();
+            BoeBot.wait(100);
+            draaien(40);
+            BoeBot.wait(1266);
+            reset();
+            gaNaarSnelheid(100);
+            BoeBot.wait(50);
+            noodrem();
+            BoeBot.wait(100);
+            draaien(40);
+            BoeBot.wait(1267);
+            reset();
+        }
 
     }
     public static void gaNaarSnelheid(int nieuweSnelheid)

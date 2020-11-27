@@ -1,12 +1,9 @@
+package Week2.Opdracht6;
+
 import TI.BoeBot;
-import TI.PWM;
 import TI.Servo;
 
-import java.awt.*;
-import java.util.BitSet;
-
-public class RobotMain {
-
+public class OpdrachtB {
     public static int basisSnelheid = 1500;
     public static int snelheids1 = 1500;
     public static int snelheids2 = 1500;
@@ -17,7 +14,7 @@ public class RobotMain {
     public static void main(String[] args)
     {
 
-            draaiGraden(50, 40);
+        draaiGraden(50, 40);
 
 
     }
