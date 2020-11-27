@@ -1,18 +1,8 @@
+package Week3.Opdracht1;
+
 import TI.BoeBot;
-import TI.PWM;
-import TI.Servo;
 
-import java.awt.*;
-import java.util.BitSet;
-
-public class RobotMain {
-    public static int basisSnelheid = 1500;
-    public static int snelheids1 = 1500;
-    public static int snelheids2 = 1500;
-    public static int verschil;
-    public static Servo s1 = new Servo(12);
-    public static Servo s2 = new Servo(13);
-
+public class OpdrachtB {
     public static void main(String[] args) {
         System.out.println("luisteren");
         while (true) {
@@ -41,6 +31,7 @@ public class RobotMain {
                 nummer+="1";
             }
         }
+
         return nummer;
     }
 
@@ -53,36 +44,30 @@ public class RobotMain {
                 break;
             case "100000010000":
                 System.out.println("2");
-                gaNaarSnelheid(200);
                 break;
             case "010000010000":
                 System.out.println("3");
                 break;
             case "110000010000":
                 System.out.println("4");
-                draaien(-40);
                 break;
             case "001000010000":
                 System.out.println("5");
-                noodrem();
                 break;
             case "101000010000":
                 System.out.println("6");
-                draaien(40);
                 break;
             case "011000010000":
                 System.out.println("7");
                 break;
             case "111000010000":
                 System.out.println("8");
-                gaNaarSnelheid(-200);
                 break;
             case "000100010000":
                 System.out.println("9");
                 break;
             case "100100010000":
                 System.out.println("0");
-                reset();
                 break;
             case "101110010000":
                 System.out.println("1-");
@@ -95,70 +80,5 @@ public class RobotMain {
                 break;
         }
         return "-1";
-    }
-
-    public static void gaNaarSnelheid(int nieuweSnelheid)
-    {
-        verschil = nieuweSnelheid;
-        int i ;
-        for (i = 0; i < nieuweSnelheid; i++)
-        {
-            s1.update(snelheids1--);
-            s2.update(snelheids2++);
-            BoeBot.wait(20);
-        }
-
-        for (i=0; i > nieuweSnelheid; i--)
-        {
-            s1.update(snelheids1++);
-            s2.update(snelheids2--);
-            BoeBot.wait(20);
-        }
-    }
-
-    public static void noodrem()
-    {
-        for (int i = snelheids1; i < 1500; i+=10)
-        {
-            s1.update(snelheids1+=10);
-            s2.update(snelheids2-=10);
-            BoeBot.wait(20);
-        }
-
-        for (int i = snelheids1; i > 1500; i-=10)
-        {
-            s1.update(snelheids1-=10);
-            s2.update(snelheids2+=10);
-            BoeBot.wait(20);
-        }
-        BoeBot.wait(100);
-        snelheids1=1500;
-        snelheids2=1500;
-        s1.update(snelheids1);
-        s2.update(snelheids2);
-
-    }
-
-    public static void draaien (int draaisnelheid)
-    {
-        snelheids1+=draaisnelheid;
-        snelheids2+=draaisnelheid;
-        s1.update(snelheids1);
-        s2.update(snelheids2);
-    }
-
-    public static void draaiGraden(int graden, int draaiSnelheid)
-    {
-        draaien(draaiSnelheid);
-        snelheids1-=graden;
-        s1.update(snelheids1);
-    }
-
-    public static void reset()
-    {
-        snelheids2 = basisSnelheid;
-        snelheids1 = basisSnelheid;
-        s1.update(snelheids1);
-        s2.update(snelheids2);
     }
 }

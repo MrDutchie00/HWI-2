@@ -1,11 +1,9 @@
+package Week3.Opdracht2;
+
 import TI.BoeBot;
-import TI.PWM;
 import TI.Servo;
 
-import java.awt.*;
-import java.util.BitSet;
-
-public class RobotMain {
+public class Opdracht2 {
     public static int basisSnelheid = 1500;
     public static int snelheids1 = 1500;
     public static int snelheids2 = 1500;
