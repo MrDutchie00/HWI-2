@@ -1,11 +1,9 @@
+package Week2.Opdracht5;
+
 import TI.BoeBot;
-import TI.PWM;
 import TI.Servo;
 
-import java.awt.*;
-import java.util.BitSet;
-
-public class RobotMain {
+public class OpdrachtD {
     public static int basisSnelheid = 1500;
     public static int snelheids1 = 1500;
     public static int snelheids2 = 1500;
@@ -17,23 +15,17 @@ public class RobotMain {
     {
         s1.update(basisSnelheid);
         s2.update(basisSnelheid);
-
-
-
-
-            gaNaarSnelheid(200);
-            BoeBot.wait(5000);
-            noodrem();
-            BoeBot.wait(3000);
-            draaien(20);
-            BoeBot.wait(3000);
-            s1.update(basisSnelheid);
-            s2.update(basisSnelheid);
-            negatiefdraaien(20);
-            BoeBot.wait(3000);
-            s1.update(basisSnelheid);
-            s2.update(basisSnelheid);
-
+        gaNaarSnelheid(200);
+        BoeBot.wait(5000);
+        noodrem();
+        BoeBot.wait(3000);
+        draaien(20);
+        BoeBot.wait(1000);
+        reset();
+        draaien((-20));
+        BoeBot.wait(1000);
+        reset();
+        draaiGraden(90, 20);
     }
     public static void gaNaarSnelheid(int nieuweSnelheid)
     {
@@ -79,20 +71,24 @@ public class RobotMain {
 
     public static void draaien (int draaisnelheid)
     {
-        s1.update(snelheids1+=draaisnelheid);
-        s2.update(snelheids2+=draaisnelheid);
-        BoeBot.wait(100);
-
+        snelheids1+=draaisnelheid;
+        snelheids2+=draaisnelheid;
+        s1.update(snelheids1);
+        s2.update(snelheids2);
     }
 
-    public static void negatiefdraaien (int draaisnelheid)
+    public static void draaiGraden(int graden, int draaiSnelheid)
     {
-        s1.update(snelheids1-=draaisnelheid);
-        s2.update(snelheids2-=draaisnelheid);
-        BoeBot.wait(100);
-
+        draaien(draaiSnelheid);
+        snelheids1-=graden;
+        s1.update(snelheids1);
     }
 
-
-
+    public static void reset()
+    {
+        snelheids2 = basisSnelheid;
+        snelheids1 = basisSnelheid;
+        s1.update(snelheids1);
+        s2.update(snelheids2);
+    }
 }
