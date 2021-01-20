@@ -1,6 +1,5 @@
 package Week3.Opdracht3;
 import TI.BoeBot;
-import TI.PinMode;
 import TI.Servo;
 
 public class OpdrachtA {
@@ -12,7 +11,7 @@ public class OpdrachtA {
 
         BoeBot.wait(5000);
 
-        toSpeed(200);
+        gaNaarSnelheid(200);
 
         while (true) {
             // Geluid versturen
@@ -26,69 +25,69 @@ public class OpdrachtA {
             // Kijken of er een object in de buurt is
             if (pulseLength <= 20) {
                 // Boebot achteruit rijden
-                toSpeed(-125);
+                gaNaarSnelheid(-125);
                 // boebot omdraaien
-                turnDegrees(180, 50);
+                draaiGraden(180, 50);
                 // Boebot weer laten rijden
-                toSpeed(200);
+                gaNaarSnelheid(200);
             }
             BoeBot.wait(50);
         }
     }
 
-    public static void toSpeed(int speed) {
+    public static void gaNaarSnelheid(int snelheid) {
         // Standaard snelheid
-        int iDefault = 1500;
+        int standaardSnelheid = 1500;
 
         // Als de snelheid hoger is dan 0
-        if (speed > 0) {
+        if (snelheid > 0) {
             // Loopen door de snelheid en de Boebot langzaam sneller laten gaan
-            for (int i = 0; i < speed; i++) {
+            for (int i = 0; i < snelheid; i++) {
                 // Nieuwe snelheid op de Boebot zetten
-                sLinks.update(iDefault - i);
-                sRechts.update(iDefault + i);
+                sLinks.update(standaardSnelheid - i);
+                sRechts.update(standaardSnelheid + i);
                 BoeBot.wait(20);
             }
-        } else if (speed < 0) {
+        } else if (snelheid < 0) {
             // De Boebot achteruit laten rijden
-            for (int i = 0; i > speed; i--) {
+            for (int i = 0; i > snelheid; i--) {
                 // Snelheid op de Boebot
-                sLinks.update(iDefault - i);
-                sRechts.update(iDefault + i);
+                sLinks.update(standaardSnelheid - i);
+                sRechts.update(standaardSnelheid + i);
                 BoeBot.wait(20);
             }
         }
     }
 
-    public static void turnDegrees(int degrees, int turningSpeed) {
+    public static void draaiGraden(int graden, int snelheid) {
         // kijken of het getal groter is dan 0
-        if (turningSpeed > 0){
+        if (snelheid > 0){
             // Tijd om te draaien bereken
-            int timePerDegree = 420 / turningSpeed;
+            int tijdPerGraad = 420 / snelheid;
 
             // Boebot laten draaien
-            sLinks.update(1500 + turningSpeed);
-            sRechts.update(1500 + turningSpeed);
+            sLinks.update(1500 + snelheid);
+            sRechts.update(1500 + snelheid);
             // Boebot de berekende tijd laten wachten
-            BoeBot.wait(timePerDegree * degrees);
-        } else if (turningSpeed < 0) {
+            BoeBot.wait(tijdPerGraad * graden);
+        } else if (snelheid < 0) {
             // Negatieve snelheid omdraaien naar positieve snelheid
-            turningSpeed = Math.abs(turningSpeed);
+            snelheid = Math.abs(snelheid);
 
             // Tijd om te draaien bereken
-            int timePerDegree = 400 / turningSpeed;
+            int tijdPerGraad = 400 / snelheid;
 
             // Boebot laten draaien
-            sLinks.update(1500 - turningSpeed);
-            sRechts.update(1500 - turningSpeed);
+            sLinks.update(1500 - snelheid);
+            sRechts.update(1500 - snelheid);
             // Boebot de berekende tijd laten wachten
-            BoeBot.wait(timePerDegree * degrees);
+            BoeBot.wait(tijdPerGraad * graden);
         }
 
-        emergencyBrake();
+        noodrem();
     }
 
-    public static void emergencyBrake() {
+    public static void noodrem() {
         // Boebot stil laten staan
         sLinks.update(1600);
         sRechts.update(1400);

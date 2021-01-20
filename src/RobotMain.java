@@ -3,6 +3,8 @@ import TI.PWM;
 import TI.Servo;
 
 import java.awt.*;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.BitSet;
 
 public class RobotMain {
@@ -12,8 +14,16 @@ public class RobotMain {
     public static int verschil;
     public static Servo s1 = new Servo(12);
     public static Servo s2 = new Servo(13);
+    private static ConnectieClass cc = new ConnectieClass();
 
     public static void main(String[] args) {
+        try{
+            System.out.println(cc.getConnection());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
         System.out.println("luisteren");
         while (true) {
             int analogeWaardeRechts = BoeBot.analogRead(1);
